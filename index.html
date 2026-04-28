@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Velocity is a Monaco-powered UI for Roblox script executors on macOS. VS Code-grade editor, Roblox API autocomplete, cloud scripts, timeline snapshots.">
+  <meta property="og:title" content="Velocity">
+  <meta property="og:description" content="Monaco-powered UI for Roblox script executors on macOS.">
+  <meta property="og:type" content="website">
+  <title>Velocity</title>
+  <script>document.documentElement.classList.add('is-loading');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/images/hero-stage.png?v=real-4" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/mock/Mock_Explorer_2.png" as="image">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500&family=Rubik+Dirt&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/showcase.css">
+</head>
+<body>
+<div class="page-loader" id="pageLoader" role="status" aria-live="polite">
+  <div class="page-loader-card">
+    <div class="page-loader-percent"><span id="loaderPercent">1</span>%</div>
+  </div>
+</div>
+<velocity-page
+  title="Velocity"
+  description="Velocity is a Monaco-powered UI for Roblox script executors on macOS. VS Code-grade editor, Roblox API autocomplete, cloud scripts, timeline snapshots."
+  nav-active="home">
+  <template>
+
+    <section class="hero" id="top">
+      <div class="hero-layer hero-layer--grid" aria-hidden="true"></div>
+      <div class="hero-layer hero-layer--mesh" aria-hidden="true"></div>
+      <div class="hero-layer hero-layer--plane" aria-hidden="true"></div>
+      <div class="hero-layer hero-layer--mist" aria-hidden="true"></div>
+
+      <div class="wrap hero-inner">
+        <div class="hero-copy" data-reveal>
+          <div class="hero-eyebrow">
+            <span class="hero-kicker">Velocity</span>
+            <span class="hero-meta-sep" aria-hidden="true"></span>
+            <span class="hero-meta-item">Native Monaco workspace</span>
+            <span class="hero-meta-sep" aria-hidden="true"></span>
+            <span class="hero-meta-item">Hydrogen + Opiumware</span>
+          </div>
+
+          <h1 class="hero-headline">
+            A native scripting
+            <span class="hero-headline-break">workspace for <span class="accent">macOS</span>.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Velocity turns executor scripting into a real desktop workflow: Monaco editing, cloud scripts, workspace
+            search, timeline snapshots, and fast execute flow inside one native app.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn--primary" href="pages/install.html">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Install Now
+            </a>
+            <a class="btn btn--ghost" href="#features">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
+              </svg>
+              Explore Features
+            </a>
+          </div>
+
+          <div class="hero-proof">
+            <span class="proof-item"><span class="proof-dot"></span>macOS 12+</span>
+            <span class="proof-item"><span class="proof-dot"></span>Intel &amp; Apple Silicon</span>
+            <span class="proof-item"><span class="proof-dot"></span>Tauri + Rust</span>
+          </div>
+        </div>
+
+        <div class="hero-stage hero-stage--image">
+          <img class="hero-stage-image" src="assets/images/hero-stage.png?v=real-4" alt="Velocity interface preview" width="1120" height="734" fetchpriority="high">
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="wrap stats-inner">
+        <div class="stat-item" data-reveal>
+          <span class="stat-num"><span>&lt;</span>2s</span>
+          <span class="stat-label">Launch time</span>
+        </div>
+        <div class="stat-item" data-reveal data-d="1">
+          <span class="stat-num">50<span>+</span></span>
+          <span class="stat-label">Snapshots per file</span>
+        </div>
+        <div class="stat-item" data-reveal data-d="2">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Executors supported</span>
+        </div>
+        <div class="stat-item" data-reveal data-d="3">
+          <span class="stat-num">0<span>$</span></span>
+          <span class="stat-label">Free and open source</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <div class="wrap showcase-intro">
+        <div class="showcase-copy-block" data-reveal>
+          <div class="eyebrow">Workflow</div>
+          <h2 class="showcase-title">A real workspace, wired end to end.</h2>
+        </div>
+        <p class="showcase-copy-sub" data-reveal data-d="1">Velocity keeps local files, Monaco tabs, cloud scripts, executor state, snapshots, and multi-instance runs in one native flow.</p>
+      </div>
+
+      <div class="wrap showcase-strip" data-reveal data-d="2">
+        <div class="showcase-strip-item">
+          <span class="showcase-strip-label">Workspace</span>
+          <strong class="showcase-strip-title">Open real folders, keep tree state, and work from the same files Velocity ships with.</strong>
+        </div>
+        <div class="showcase-strip-item">
+          <span class="showcase-strip-label">Cloud</span>
+          <strong class="showcase-strip-title">ScriptBlox and rScripts load inside the app with filters, caching, and direct editor import.</strong>
+        </div>
+        <div class="showcase-strip-item">
+          <span class="showcase-strip-label">Runtime</span>
+          <strong class="showcase-strip-title">Hydrogen, Opiumware, autoexec, and multi-instance commands stay tied to the active tab.</strong>
+        </div>
+      </div>
+
+      <div class="showcase-sticky">
+        <div class="wrap showcase-stage-wrap" aria-hidden="true"></div>
+        <div class="sc-frame-shell" id="scFrameShell">
+          <div class="showcase-frame showcase-frame--shots" id="showcaseFrame">
+            <img class="showcase-shot active" src="assets/mock/Mock_Explorer_2.png" width="2424" height="1664" alt="Velocity editor with an Aim Assist script open">
+            <img class="showcase-shot" src="assets/mock/Mock_Explorer_1.png" width="2424" height="1664" alt="Velocity explorer with Infinite Yield open">
+            <img class="showcase-shot" src="assets/mock/Mock_CloudScripts.png" width="2424" height="1664" alt="Velocity Cloud Scripts browser">
+            <img class="showcase-shot" src="assets/mock/Mock_Pinboard.png" width="2424" height="1664" alt="Velocity Pinboard snippets">
+            <img class="showcase-shot" src="assets/mock/Mock_Autoexecute.png" width="2424" height="1664" alt="Velocity Autoexecute editor">
+            <img class="showcase-shot" src="assets/mock/Mock_Accounts.png" width="2424" height="1664" alt="Velocity account manager">
+          </div>
+        </div>
+
+        <div class="sc-panel sc-panel--a" id="scPanelA">
+          <div class="sc-panel-inner">
+            <div class="sc-track-line"><div class="sc-track-fill" id="scTrackFill"></div></div>
+
+            <div class="sc-step active" data-idx="0">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Editor</div>
+                <div class="sc-title">Code stays readable.</div>
+                <div class="sc-desc">Large Luau files sit inside a real Monaco workspace with tabs, line numbers, syntax color, and the explorer always one glance away.</div>
+              </div>
+            </div>
+
+            <div class="sc-step" data-idx="1">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Workspace</div>
+                <div class="sc-title">A clean home for scripts.</div>
+                <div class="sc-desc">Ship starter utilities, keep local folders organized, and jump between admin tools, helpers, and experiments without browser clutter.</div>
+              </div>
+            </div>
+
+            <div class="sc-step" data-idx="2">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Cloud</div>
+                <div class="sc-title">Sources without tab hunting.</div>
+                <div class="sc-desc">Browse ScriptBlox and rScripts in-app, use recent or trending views, then copy or run without leaving the workspace.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sc-panel sc-panel--b" id="scPanelB">
+          <div class="sc-panel-inner">
+            <div class="sc-track-line"><div class="sc-track-fill" id="scTrackFillB"></div></div>
+
+            <div class="sc-step" data-idx="3">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Pinboard</div>
+                <div class="sc-title">Small scripts deserve a shelf.</div>
+                <div class="sc-desc">Keep repeatable snippets as cards, filter them by name or tag, and run the small stuff without opening a full file.</div>
+              </div>
+            </div>
+
+            <div class="sc-step" data-idx="4">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Autoexecute</div>
+                <div class="sc-title">Startup scripts stay deliberate.</div>
+                <div class="sc-desc">Toggle autoexecute, edit named loaders, and sync the scripts Velocity should hand to your executor automatically.</div>
+              </div>
+            </div>
+
+            <div class="sc-step" data-idx="5">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Accounts</div>
+                <div class="sc-title">Instance targets stay visible.</div>
+                <div class="sc-desc">Keep account context close to the multi-instance flow, with clear warnings around sensitive session handling.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="theme-parade" id="themeParade" aria-hidden="true">
+          <div class="theme-fan" id="themeFan">
+            <article class="theme-card-show theme-card-show--carbon active" data-theme-card data-theme-src="assets/mock/Mock_Theme_Carbon.png">
+              <span class="theme-kicker">テーマ 01</span>
+              <strong>Carbon</strong>
+              <p>Pure black + blue</p>
+              <div class="theme-palette"><i></i><i></i><i></i><i></i></div>
+            </article>
+            <article class="theme-card-show theme-card-show--slate" data-theme-card data-theme-src="assets/mock/Mock_Theme_Slate.png">
+              <span class="theme-kicker">テーマ 02</span>
+              <strong>Slate</strong>
+              <p>Cool muted gray</p>
+              <div class="theme-palette"><i></i><i></i><i></i><i></i></div>
+            </article>
+            <article class="theme-card-show theme-card-show--gruvbox" data-theme-card data-theme-src="assets/mock/Mock_Theme_Gruvbox.png">
+              <span class="theme-kicker">テーマ 03</span>
+              <strong>Gruvbox</strong>
+              <p>Earthy warm tones</p>
+              <div class="theme-palette"><i></i><i></i><i></i><i></i></div>
+            </article>
+            <article class="theme-card-show theme-card-show--monokai" data-theme-card data-theme-src="assets/mock/Mock_Theme_Monokai.png">
+              <span class="theme-kicker">テーマ 04</span>
+              <strong>Monokai</strong>
+              <p>Classic editor color</p>
+              <div class="theme-palette"><i></i><i></i><i></i><i></i></div>
+            </article>
+            <article class="theme-card-show theme-card-show--onyx" data-theme-card data-theme-src="assets/mock/Mock_Theme_Onyx.png">
+              <span class="theme-kicker">テーマ 05</span>
+              <strong>Onyx</strong>
+              <p>Dense black glass</p>
+              <div class="theme-palette"><i></i><i></i><i></i><i></i></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="sc-panel sc-panel--c" id="scPanelC">
+          <div class="sc-panel-inner">
+            <div class="sc-track-line"><div class="sc-track-fill" id="scTrackFillC"></div></div>
+
+            <div class="sc-step active" data-idx="6">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Themes</div>
+                <div class="sc-title">The workspace changes tone.</div>
+                <div class="sc-desc">Velocity ships with full interface themes, not just accent toggles. Pick a palette and the whole editor follows.</div>
+              </div>
+            </div>
+
+            <div class="sc-step" data-idx="7">
+              <div class="sc-dot-col"><div class="sc-dot"></div></div>
+              <div class="sc-body">
+                <div class="sc-label">Palette</div>
+                <div class="sc-title">Color without visual noise.</div>
+                <div class="sc-desc">Carbon, Slate, Gruvbox, Monokai, Onyx, and more are designed for long sessions.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="showcase-spacer" aria-hidden="true"></div>
+
+      <div class="wrap showcase-tail">
+        <div class="showcase-tail-item" data-reveal>
+          <span class="showcase-strip-label">Search</span>
+          <strong class="showcase-strip-title">Ripgrep powers workspace results with regex, whole-word, match-case, include, and exclude filters.</strong>
+        </div>
+        <div class="showcase-tail-item" data-reveal data-d="1">
+          <span class="showcase-strip-label">Autoexec</span>
+          <strong class="showcase-strip-title">Sync Lua files to Hydrogen or Opiumware autoexec folders without turning the editor into a file chore.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="eyebrow" style="margin-bottom:1rem">Features</div>
+            <h2 class="section-title">Everything you need to script,<br><em>without breaking focus.</em></h2>
+          </div>
+          <p class="section-sub">Velocity combines editor quality, cloud access, execution flow, and recovery tools into one focused macOS workspace.</p>
+        </div>
+
+        <div class="feat-list">
+          <div class="feat-row" data-reveal>
+            <span class="feat-n">01</span>
+            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Monaco Editor</h3>
+              <p class="feat-desc">VS Code-grade editing with Luau syntax highlighting, Roblox API autocomplete, multiple tabs, breadcrumbs, and diff support.</p>
+            </div>
+            <span class="feat-tag">Editor core</span>
+          </div>
+
+          <div class="feat-row" data-reveal data-d="1">
+            <span class="feat-n">02</span>
+            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Cloud Scripts</h3>
+              <p class="feat-desc">Browse ScriptBlox and rscripts.net inside Velocity, preview code, save locally, and keep your workspace supplied without extra tabs.</p>
+            </div>
+            <span class="feat-tag">Built-in sources</span>
+          </div>
+
+          <div class="feat-row" data-reveal data-d="2">
+            <span class="feat-n">03</span>
+            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.36 2.64L3 8" /><polyline points="3 3 3 8 8 8" /><polyline points="12 7 12 12 15 14" /></svg></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Timeline Snapshots</h3>
+              <p class="feat-desc">Up to 50 snapshots per file let you roll back quickly when a run goes wrong, separate from ordinary editor undo.</p>
+            </div>
+            <span class="feat-tag">Recovery</span>
+          </div>
+
+          <div class="feat-row" data-reveal data-d="3">
+            <span class="feat-n">04</span>
+            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Workspace Search</h3>
+              <p class="feat-desc">Search across every file instantly with case, whole-word, and regex support for larger projects and shared libraries.</p>
+            </div>
+            <span class="feat-tag">Full-text</span>
+          </div>
+
+          <div class="feat-row" data-reveal data-d="4">
+            <span class="feat-n">05</span>
+            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Multi-Instance Execute</h3>
+              <p class="feat-desc">Send scripts to multiple Roblox clients at once and manage repeated testing workflows without switching between windows.</p>
+            </div>
+            <span class="feat-tag">Batch flow</span>
+          </div>
+
+          <div class="feat-row" data-reveal data-d="5">
+            <span class="feat-n">06</span>
+            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5" /><line x1="12" y1="19" x2="20" y2="19" /></svg></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Autoexec Sync</h3>
+              <p class="feat-desc">Keep selected scripts synced to your executor’s autoexec folder on save for a cleaner repeat-run setup.</p>
+            </div>
+            <span class="feat-tag">Always ready</span>
+          </div>
+
+          <div class="feat-row" data-reveal data-d="6">
+            <span class="feat-n">07</span>
+            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Workspaces</h3>
+              <p class="feat-desc">Use real folders and files inside <code>~/Velocity/</code>, switch workspaces from the sidebar, and avoid any lock-in around your scripts.</p>
+            </div>
+            <span class="feat-tag">Real files</span>
+          </div>
+
+          <div class="feat-row feat-row--cta" data-reveal data-d="7">
+            <span class="feat-n">08</span>
+            <div class="feat-icon feat-icon--rust"><img src="./assets/images/tauri.svg" alt="Tauri logo" /></div>
+            <div class="feat-body">
+              <h3 class="feat-title">Built on Tauri + Rust</h3>
+              <p class="feat-desc">Velocity stays lightweight, launches fast, and keeps the stack simple while remaining free and open source.</p>
+            </div>
+            <div class="feat-cta-btns">
+              <a class="btn btn--primary" href="./pages/install.html">Install Velocity</a>
+              <a class="btn btn--ghost" href="pages/tutorials.html">Read Tutorials</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </template>
+</velocity-page>
+
+<script type="module" src="js/main.js?v=landing-clean-21"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Install Velocity, pick your executor, and run your first script.">
+  <title>Getting Started</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <link rel="stylesheet" href="../../css/sections.css">
+</head>
+<body>
+
+<nav class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="../../">
+      <span class="nav-logo-v"></span>
+      Velocity
+    </a>
+    <div class="nav-links">
+      <a class="nav-a" href="../../">Home</a>
+      <a class="nav-a" href="../install.html">Install</a>
+      <a class="nav-a active" href="../tutorials.html">Tutorials</a>
+      <a class="nav-a nav-gh" href="https://github.com/dawnpetal/Velocity" target="_blank" rel="noopener noreferrer">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="tut-layout" data-reveal>
+
+      <aside class="tut-sidebar">
+        <a class="tut-back" href="../tutorials.html">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          All tutorials
+        </a>
+        <nav class="tut-nav" aria-label="Steps">
+          <div class="tut-nav-label">Steps</div>
+          <a class="tut-nav-item active" href="#step-1"><span class="tut-nav-num">01</span> Install Velocity</a>
+          <a class="tut-nav-item" href="#step-2"><span class="tut-nav-num">02</span> Launch and pick your executor</a>
+          <a class="tut-nav-item" href="#step-3"><span class="tut-nav-num">03</span> Write and execute</a>
+          <a class="tut-nav-item" href="#step-4"><span class="tut-nav-num">04</span> Save to your workspace</a>
+        </nav>
+      </aside>
+
+      <div class="tut-content">
+        <header class="tut-page-head">
+          <div class="tut-page-num">Tutorial 01</div>
+          <h1 class="tut-page-title">Getting <em>Started</em></h1>
+          <p class="tut-page-sub">Install Velocity, pick your executor, write and execute your first script. Zero to running in four steps.</p>
+        </header>
+
+        <div class="tut-steps">
+
+          <div class="tut-step" id="step-1">
+            <span class="tut-step-num">01</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">Install Velocity</h2>
+              <p class="tut-step-desc">Run the install command from your terminal. The script pulls the latest release and drops it in <code>/Applications</code>.</p>
+              <div class="tut-snippet">
+                <div class="tut-snippet-bar">
+                  <span class="tut-snippet-label">Terminal</span>
+                  <span class="tut-snippet-lang">zsh</span>
+                </div>
+                <pre>curl -fsSL https://raw.githubusercontent.com/dawnpetal/Velocity/main/install.sh | bash</pre>
+              </div>
+              <div class="tut-callout tut-callout--tip">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>Requires <b>macOS 12+</b> and <b>jq</b>. All ship with modern macOS.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tut-step" id="step-2">
+            <span class="tut-step-num">02</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">Launch and pick your executor</h2>
+              <p class="tut-step-desc">Open Velocity from <code>/Applications</code>. On first launch you'll land on the Settings tab. Under <b>Executor</b>, choose either <b>Hydrogen</b> or <b>Opiumware</b>, then hit Reload.</p>
+              <div class="tut-callout tut-callout--warn">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span>Velocity is a <b>UI layer only</b>. It does not include an executor, you need <b>Hydrogen</b> or <b>Opiumware</b> separately and running before you can execute scripts.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tut-step" id="step-3">
+            <span class="tut-step-num">03</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">Write and execute your first script</h2>
+              <p class="tut-step-desc">Switch to the Editor tab. Type or paste a script into the Monaco editor, then press <kbd>Cmd Return</kbd> OR the Run Button to execute. The status bar at the bottom shows injection state in real time.</p>
+              <div class="tut-snippet">
+                <div class="tut-snippet-bar">
+                  <span class="tut-snippet-label">Editor</span>
+                  <span class="tut-snippet-lang">lua</span>
+                </div>
+<pre><span class="t-b">print</span>(<span class="t-s">"Hello from Velocity"</span>)
+<span class="t-k">local</span> <span class="t-v">Players</span> = <span class="t-b">game</span>:<span class="t-m">GetService</span>(<span class="t-s">"Players"</span>)
+<span class="t-k">local</span> <span class="t-v">lp</span> = <span class="t-v">Players</span>.<span class="t-v">LocalPlayer</span>
+<span class="t-b">print</span>(<span class="t-v">lp</span>.<span class="t-v">Name</span>)</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="tut-step" id="step-4">
+            <span class="tut-step-num">04</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">Save to your workspace</h2>
+              <p class="tut-step-desc">Press <kbd>Cmd</kbd> + <kbd>S</kbd> to save. The file is written to your workspace and appears immediately in the sidebar file tree. Use the sidebar's new-file button or right-click context menu to create additional files and folders without leaving the app.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <a class="footer-logo" href="../../"><span class="footer-logo-v"></span>Velocity</a>
+      <p class="footer-tagline">Monaco-powered UI for Roblox script executors on macOS.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <span class="footer-col-head">Product</span>
+        <a class="footer-link" href="../install.html">Install</a>
+        <a class="footer-link" href="../tutorials.html">Tutorials</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-head">Links</span>
+        <a class="footer-link" href="https://github.com/dawnpetal/Velocity" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="footer-link" href="https://github.com/dawnpetal/Velocity/releases" target="_blank" rel="noopener noreferrer">Releases</a>
+        <a class="footer-link" href="https://github.com/dawnpetal/Velocity/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-legal">Not affiliated with Roblox Corporation. For educational purposes only.</div>
+</footer>
+
+<script type="module" src="../../js/main.js?v=landing-clean-21"></script>
+<script>
+  const items = document.querySelectorAll('.tut-nav-item');
+  const steps = document.querySelectorAll('.tut-step');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        items.forEach(a => a.classList.remove('active'));
+        document.querySelector(`.tut-nav-item[href="#${e.target.id}"]`)?.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  steps.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

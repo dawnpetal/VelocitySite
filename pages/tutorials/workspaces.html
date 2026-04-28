@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Organise scripts, open multiple tabs, and set up autoexec in Velocity.">
+  <title>Workspaces</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <link rel="stylesheet" href="../../css/sections.css">
+</head>
+
+<body>
+
+  <nav class="nav scrolled" id="nav">
+    <div class="wrap nav-inner">
+      <a class="nav-logo" href="../../">
+        <span class="nav-logo-v"></span>
+        Velocity
+      </a>
+      <div class="nav-links">
+        <a class="nav-a" href="../../">Home</a>
+        <a class="nav-a" href="../install.html">Install</a>
+        <a class="nav-a active" href="../tutorials.html">Tutorials</a>
+        <a class="nav-a nav-gh" href="https://github.com/dawnpetal/Velocity" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+      <div class="tut-layout" data-reveal>
+
+        <aside class="tut-sidebar">
+          <a class="tut-back" href="../tutorials.html">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            All tutorials
+          </a>
+          <nav class="tut-nav" aria-label="Steps">
+            <div class="tut-nav-label">Steps</div>
+            <a class="tut-nav-item active" href="#step-1"><span class="tut-nav-num">01</span> Organise into folders</a>
+            <a class="tut-nav-item" href="#step-2"><span class="tut-nav-num">02</span> Open multiple tabs</a>
+            <a class="tut-nav-item" href="#step-3"><span class="tut-nav-num">03</span> Use the command palette</a>
+            <a class="tut-nav-item" href="#step-4"><span class="tut-nav-num">04</span> Using autoexecute</a>
+          </nav>
+        </aside>
+
+        <div class="tut-content">
+          <header class="tut-page-head">
+            <div class="tut-page-num">Tutorial 02</div>
+            <h1 class="tut-page-title">Work<em>spaces</em></h1>
+            <p class="tut-page-sub">Organise scripts into folders, open multiple tabs, use the command palette, and set
+              up autoexecute for scripts that run on every inject.</p>
+          </header>
+
+          <div class="tut-steps">
+
+            <div class="tut-step" id="step-1">
+              <span class="tut-step-num">01</span>
+              <div class="tut-step-body">
+                <h2 class="tut-step-title">Organise scripts into folders</h2>
+                <p class="tut-step-desc">Use the buttons provided at the top in the file explorer to create a new folder or file.
+                  A sensible starting layout:</p>
+                <div class="tut-snippet">
+                  <div class="tut-snippet-bar">
+                    <span class="tut-snippet-label">Workspace</span>
+                  </div>
+                  <pre>games/
+  obby-skip.lua
+  speed-hub.lua
+utils/
+  anti-afk.lua
+  fps-unlocker.lua
+</pre>
+                </div>
+                <div class="tut-callout tut-callout--tip">
+                  <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>If you want the correct file icon and syntax, please suffix .lua at the end the file name.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tut-step" id="step-2">
+              <span class="tut-step-num">02</span>
+              <div class="tut-step-body">
+                <h2 class="tut-step-title">Open multiple tabs</h2>
+                <p class="tut-step-desc">Click any file in the sidebar to open it in the editor. Click more files to
+                  stack them as tabs across the top. Middle-click or hit the <code>×</code> on a tab to close it.
+                  Unsaved tabs show a dot indicator.</p>
+              </div>
+            </div>
+
+            <div class="tut-step" id="step-3">
+              <span class="tut-step-num">03</span>
+              <div class="tut-step-body">
+                <h2 class="tut-step-title">Use the command palette</h2>
+                <p class="tut-step-desc">Press <kbd>Cmd</kbd> + <kbd>P</kbd> to fuzzy-search any open file by name.
+                  Press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> for editor commands, toggle word wrap, format
+                  document, change language mode, and more.</p>
+              </div>
+            </div>
+
+            <div class="tut-step" id="step-4">
+              <span class="tut-step-num">04</span>
+              <div class="tut-step-body">
+                <h2 class="tut-step-title">Using autoexecute</h2>
+                <p class="tut-step-desc">Open the <code>autoexecute</code> tab in the sidebar and create scripts inside it.
+                  Everything in there runs automatically everytime you join a game from that point forward. Right place
+                  for anti-AFK, UI patches, anything you want active every session.</p>
+                <div class="tut-snippet">
+                  <div class="tut-snippet-bar">
+                    <span class="tut-snippet-label">autoexecute/init.lua</span>
+                    <span class="tut-snippet-lang">lua</span>
+                  </div>
+                  <pre><span class="t-k">local</span> <span class="t-v">RunService</span> = <span class="t-b">game</span>:<span class="t-m">GetService</span>(<span class="t-s">"RunService"</span>)
+<span class="t-k">local</span> <span class="t-v">VIM</span> = <span class="t-b">game</span>:<span class="t-m">GetService</span>(<span class="t-s">"VirtualInputManager"</span>)
+
+<span class="t-k">local</span> <span class="t-v">t</span> = <span class="t-n">0</span>
+<span class="t-v">RunService</span>.<span class="t-v">Heartbeat</span>:<span class="t-m">Connect</span>(<span class="t-k">function</span>(<span class="t-v">dt</span>)
+  <span class="t-v">t</span> = <span class="t-v">t</span> + <span class="t-v">dt</span>
+  <span class="t-k">if</span> <span class="t-v">t</span> &gt;= <span class="t-n">900</span> <span class="t-k">then</span>
+    <span class="t-v">VIM</span>:<span class="t-m">SendKeyEvent</span>(<span class="t-k">true</span>, <span class="t-s">"Space"</span>, <span class="t-k">false</span>, <span class="t-k">nil</span>)
+    <span class="t-v">t</span> = <span class="t-n">0</span>
+  <span class="t-k">end</span>
+<span class="t-k">end</span>)</pre>
+                </div>
+                <div class="tut-callout tut-callout--tip">
+                  <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>Scripts run in filesystem order. Prefix filenames with numbers (<code>01-init.lua</code>,
+                    <code>02-ui.lua</code>) to control the sequence.</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <a class="footer-logo" href="../../"><span class="footer-logo-v"></span>Velocity</a>
+        <p class="footer-tagline">Monaco-powered UI for Roblox script executors on macOS.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-col-head">Product</span>
+          <a class="footer-link" href="../install.html">Install</a>
+          <a class="footer-link" href="../tutorials.html">Tutorials</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-head">Links</span>
+          <a class="footer-link" href="https://github.com/dawnpetal/Velocity" target="_blank"
+            rel="noopener noreferrer">GitHub</a>
+          <a class="footer-link" href="https://github.com/dawnpetal/Velocity/releases" target="_blank"
+            rel="noopener noreferrer">Releases</a>
+          <a class="footer-link" href="https://github.com/dawnpetal/Velocity/issues" target="_blank"
+            rel="noopener noreferrer">Issues</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap footer-legal">Not affiliated with Roblox Corporation. For educational purposes only.</div>
+  </footer>
+
+  <script type="module" src="../../js/main.js?v=landing-clean-21"></script>
+  <script>
+    const items = document.querySelectorAll('.tut-nav-item');
+    const steps = document.querySelectorAll('.tut-step');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          items.forEach(a => a.classList.remove('active'));
+          document.querySelector(`.tut-nav-item[href="#${e.target.id}"]`)?.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    steps.forEach(s => obs.observe(s));
+  </script>
+</body>
+
+</html>
