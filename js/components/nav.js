@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { key: 'tutorials', label: 'Tutorials', path: 'pages/tutorials.html' },
 ];
 
-class VelocityNav extends HTMLElement {
+class VelocityUINav extends HTMLElement {
   connectedCallback() {
     const active = this.getAttribute('active') ?? 'home';
     const scrolled = this.hasAttribute('scrolled');
@@ -23,11 +23,11 @@ class VelocityNav extends HTMLElement {
         <div class="wrap nav-inner">
           <a class="nav-logo" href="${ROOT}">
             <span class="nav-logo-v"></span>
-            Velocity
+            VelocityUI
           </a>
           <div class="nav-links">
             ${links}
-            <a class="nav-a nav-gh" href="https://github.com/dawnpetal/Velocity" target="_blank" rel="noopener noreferrer">
+            <a class="nav-a nav-gh" href="https://github.com/dawnpetal/VelocityUI" target="_blank" rel="noopener noreferrer">
               ${GH_ICON}
               GitHub
             </a>
@@ -55,4 +55,4 @@ class VelocityNav extends HTMLElement {
   }
 }
 
-customElements.define('velocity-nav', VelocityNav);
+customElements.define('velocityui-nav', VelocityUINav);

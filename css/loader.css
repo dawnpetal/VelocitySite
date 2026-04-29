@@ -7,7 +7,7 @@ html.is-loading body {
 }
 
 html.is-loading main,
-html.is-loading velocity-page {
+html.is-loading velocityui-page {
   opacity: 0;
 }
 

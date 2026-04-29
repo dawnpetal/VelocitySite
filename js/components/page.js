@@ -1,7 +1,7 @@
 import './nav.js?v=landing-clean-21';
 import './footer.js?v=landing-clean-21';
 
-class VelocityPage extends HTMLElement {
+class VelocityUIPage extends HTMLElement {
   connectedCallback() {
     const title = this.getAttribute('title');
     const navActive = this.getAttribute('nav-active') ?? 'home';
@@ -10,9 +10,9 @@ class VelocityPage extends HTMLElement {
     if (title) document.title = title;
 
     const tpl = this.querySelector('template');
-    const nav = document.createElement('velocity-nav');
+    const nav = document.createElement('velocityui-nav');
     const main = document.createElement('main');
-    const footer = document.createElement('velocity-footer');
+    const footer = document.createElement('velocityui-footer');
 
     nav.setAttribute('active', navActive);
     if (navScrolled) nav.setAttribute('scrolled', '');
@@ -22,4 +22,4 @@ class VelocityPage extends HTMLElement {
   }
 }
 
-customElements.define('velocity-page', VelocityPage);
+customElements.define('velocityui-page', VelocityUIPage);

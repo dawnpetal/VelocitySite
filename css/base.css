@@ -175,7 +175,7 @@ a:focus-visible {
   }
 }
 
-velocity-nav,
-velocity-footer {
+velocityui-nav,
+velocityui-footer {
   display: block;
 }

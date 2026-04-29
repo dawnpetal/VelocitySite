@@ -355,7 +355,7 @@ export function initShowcase() {
 
   const attachLenis = (lenis) => lenis?.on?.('scroll', ({ scroll }) => schedule(scroll));
   attachLenis(getLenis());
-  window.addEventListener('velocity:lenis-ready', (event) => attachLenis(event.detail), {
+  window.addEventListener('velocityui:lenis-ready', (event) => attachLenis(event.detail), {
     once: true,
   });
   window.addEventListener('scroll', () => schedule(getLenis()?.scroll ?? window.scrollY), {

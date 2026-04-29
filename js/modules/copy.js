@@ -1,7 +1,7 @@
 const INSTALL_CMD =
-  'curl -fsSL https://raw.githubusercontent.com/dawnpetal/Velocity/main/install.sh | bash';
+  'curl -fsSL https://raw.githubusercontent.com/dawnpetal/VelocityUI/main/install.sh | bash';
 const UNINSTALL_CMD =
-  'curl -fsSL https://raw.githubusercontent.com/dawnpetal/Velocity/main/uninstall.sh | bash';
+  'curl -fsSL https://raw.githubusercontent.com/dawnpetal/VelocityUI/main/uninstall.sh | bash';
 
 function bindCopy(btnId, cmd, fallbackId) {
   const btn = document.getElementById(btnId);

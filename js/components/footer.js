@@ -1,6 +1,6 @@
 const ROOT = new URL('../../', import.meta.url).href;
 
-class VelocityFooter extends HTMLElement {
+class VelocityUIFooter extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <footer class="footer">
@@ -8,7 +8,7 @@ class VelocityFooter extends HTMLElement {
           <div class="footer-brand">
             <a class="footer-logo" href="${ROOT}">
               <span class="footer-logo-v"></span>
-              Velocity
+              VelocityUI
             </a>
             <p class="footer-tagline">Monaco-powered UI for Roblox script executors on macOS.</p>
           </div>
@@ -20,9 +20,9 @@ class VelocityFooter extends HTMLElement {
             </div>
             <div class="footer-col">
               <span class="footer-col-head">Links</span>
-              <a class="footer-link" href="https://github.com/dawnpetal/Velocity" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a class="footer-link" href="https://github.com/dawnpetal/Velocity/releases" target="_blank" rel="noopener noreferrer">Releases</a>
-              <a class="footer-link" href="https://github.com/dawnpetal/Velocity/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+              <a class="footer-link" href="https://github.com/dawnpetal/VelocityUI" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="footer-link" href="https://github.com/dawnpetal/VelocityUI/releases" target="_blank" rel="noopener noreferrer">Releases</a>
+              <a class="footer-link" href="https://github.com/dawnpetal/VelocityUI/issues" target="_blank" rel="noopener noreferrer">Issues</a>
             </div>
           </div>
         </div>
@@ -31,4 +31,4 @@ class VelocityFooter extends HTMLElement {
   }
 }
 
-customElements.define('velocity-footer', VelocityFooter);
+customElements.define('velocityui-footer', VelocityUIFooter);

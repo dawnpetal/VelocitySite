@@ -22,7 +22,7 @@ async function loadLenis() {
       };
 
       requestAnimationFrame(raf);
-      window.dispatchEvent(new CustomEvent('velocity:lenis-ready', { detail: lenisInstance }));
+      window.dispatchEvent(new CustomEvent('velocityui:lenis-ready', { detail: lenisInstance }));
       return lenisInstance;
     })
     .catch(() => null);
