@@ -5,6 +5,7 @@ const GH_ICON = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentCo
 const NAV_LINKS = [
   { key: 'home', label: 'Home', path: '' },
   { key: 'install', label: 'Install', path: 'pages/install.html' },
+  { key: 'executors', label: 'Executors', path: 'pages/executors.html' },
   { key: 'tutorials', label: 'Tutorials', path: 'pages/tutorials.html' },
 ];
 

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Run scripts across multiple Roblox accounts simultaneously using VelocityUI's multi-instance targeting.">
+  <title>Multi-Instance - VelocityUI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <link rel="stylesheet" href="../../css/sections.css">
+  <style>
+    .tut-figure {
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--bg-1);
+    }
+    .tut-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .tut-figure-cap {
+      padding: 0.65rem 1rem;
+      font-size: 0.72rem;
+      color: var(--ink-4);
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--line);
+    }
+    .tut-callout--note {
+      background: rgba(79, 142, 247, 0.06);
+      border-color: rgba(79, 142, 247, 0.22);
+    }
+    .tut-callout--note .tut-callout-icon {
+      color: #4f8ef7;
+    }
+
+    /* dot legend */
+    .dot-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .dot-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--line);
+      background: var(--bg-1);
+    }
+    .dot-row--green { border-color: rgba(74, 222, 128, 0.2); background: rgba(74, 222, 128, 0.04); }
+    .dot-row--yellow { border-color: rgba(251, 191, 36, 0.2); background: rgba(251, 191, 36, 0.04); }
+    .dot-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .dot-indicator--green { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.5); }
+    .dot-indicator--yellow { background: #fbbf24; box-shadow: 0 0 8px rgba(251,191,36,0.4); }
+    .dot-label { font-size: 0.775rem; font-weight: 500; color: var(--ink); margin-bottom: 0.2rem; }
+    .dot-desc { font-size: 0.75rem; font-weight: 300; color: var(--ink-3); line-height: 1.6; }
+
+    /* icon steps (ordered flow) */
+    .icon-steps {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      gap: 0;
+    }
+    .icon-steps::before {
+      content: '';
+      position: absolute;
+      left: 1.1rem;
+      top: 2.2rem;
+      bottom: 2.2rem;
+      width: 1px;
+      background: var(--line);
+    }
+    .icon-step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 0.85rem 0;
+    }
+    .icon-step-num {
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      background: var(--bg-2);
+      border: 1px solid var(--line-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .icon-step-text {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--ink-2);
+      line-height: 1.7;
+      padding-top: 0.35rem;
+    }
+    .icon-step-text b { color: var(--ink); font-weight: 500; }
+
+    /* stat pill row */
+    .stat-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--line);
+      background: var(--bg-1);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      white-space: nowrap;
+    }
+    .stat-pill svg { color: var(--amber); flex-shrink: 0; }
+
+    /* edge case cards */
+    .edge-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .edge-card {
+      border: 1px solid var(--line);
+      border-radius: var(--r-sm);
+      background: var(--bg-1);
+      overflow: hidden;
+    }
+    .edge-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.1rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .edge-card-icon {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: var(--r-xs);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .edge-card-icon--warn { background: rgba(255,165,0,0.08); color: #f59e0b; }
+    .edge-card-icon--info { background: rgba(79,142,247,0.08); color: #4f8ef7; }
+    .edge-card-icon--err  { background: rgba(216,108,97,0.08); color: var(--red); }
+    .edge-card-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink);
+      flex: 1;
+    }
+    .edge-card-chevron {
+      color: var(--ink-4);
+      transition: transform 0.2s var(--ease);
+      flex-shrink: 0;
+    }
+    .edge-card.open .edge-card-chevron { transform: rotate(90deg); }
+    .edge-card-body {
+      font-size: 0.775rem;
+      font-weight: 300;
+      color: var(--ink-3);
+      line-height: 1.75;
+      padding: 0 1.1rem 1rem 1.1rem;
+      display: none;
+    }
+    .edge-card.open .edge-card-body { display: block; }
+    .edge-card-body b { color: var(--ink-2); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<nav class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="../../">
+      <span class="nav-logo-v"></span>
+      VelocityUI
+    </a>
+    <div class="nav-links">
+      <a class="nav-a" href="../../">Home</a>
+      <a class="nav-a" href="../install.html">Install</a>
+      <a class="nav-a active" href="../tutorials.html">Tutorials</a>
+      <a class="nav-a nav-gh" href="https://github.com/dawnpetal/VelocityUI" target="_blank" rel="noopener noreferrer">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="tut-layout" data-reveal>
+
+      <aside class="tut-sidebar">
+        <a class="tut-back" href="../tutorials.html">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          All tutorials
+        </a>
+        <nav class="tut-nav" aria-label="Steps">
+          <div class="tut-nav-label">Steps</div>
+          <a class="tut-nav-item active" href="#step-1"><span class="tut-nav-num">01</span> How it works</a>
+          <a class="tut-nav-item" href="#step-2"><span class="tut-nav-num">02</span> First-time setup</a>
+          <a class="tut-nav-item" href="#step-3"><span class="tut-nav-num">03</span> Targeting instances</a>
+          <a class="tut-nav-item" href="#step-4"><span class="tut-nav-num">04</span> Running the script</a>
+          <a class="tut-nav-item" href="#step-5"><span class="tut-nav-num">05</span> Edge cases</a>
+        </nav>
+      </aside>
+
+      <div class="tut-content">
+        <header class="tut-page-head">
+          <div class="tut-page-num">Tutorial 04</div>
+          <h1 class="tut-page-title">Multi-<em>Instance</em></h1>
+          <p class="tut-page-sub">Target specific Roblox accounts and send scripts to one, several, or all of them at once, without re-pasting or switching windows.</p>
+        </header>
+
+        <div class="tut-steps">
+
+          <div class="tut-step" id="step-1">
+            <span class="tut-step-num">01</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">How it works</h2>
+              <p class="tut-step-desc">Every account in the dropdown has a coloured dot. That dot is all you need to read before sending a script.</p>
+              <div class="dot-legend">
+                <div class="dot-row dot-row--green">
+                  <div class="dot-indicator dot-indicator--green"></div>
+                  <div>
+                    <div class="dot-label">Green - Active</div>
+                    <div class="dot-desc">In-game right now, reporting back to VelocityUI. Scripts sent here go through.</div>
+                  </div>
+                </div>
+                <div class="dot-row dot-row--yellow">
+                  <div class="dot-indicator dot-indicator--yellow"></div>
+                  <div>
+                    <div class="dot-label">Yellow - Stale</div>
+                    <div class="dot-desc">Seen before, not active right now. Could be offline, not in a game, or executor has not reported in. Scripts will not reach this account.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tut-figure">
+                <img src="../../assets/images/multi-instance-ui.png" alt="VelocityUI top-right corner showing the monitor icon and Instances dropdown" width="1246" height="828" loading="lazy">
+                <div class="tut-figure-cap">Monitor icon + Instances dropdown - top-right corner of the UI</div>
+              </div>
+              <div class="tut-callout tut-callout--note">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>Click the monitor icon to activate it first, then click the dropdown arrow beside it. These are two separate controls. Clicking the monitor icon again will <b>not</b> close the dropdown.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tut-step" id="step-2">
+            <span class="tut-step-num">02</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">First-time setup</h2>
+              <p class="tut-step-desc">VelocityUI writes a script to your executor's autoexecute folder on first boot. That script is what registers each account with the UI when Roblox launches. Until that file exists, nothing appears in the dropdown.</p>
+              <div class="tut-callout tut-callout--warn">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span><b>First time using VelocityUI?</b> Open VelocityUI before launching Roblox. The file gets written on boot. If Roblox opens first, the executor runs before the file exists and nothing registers.</span>
+              </div>
+              <p class="tut-step-desc">Do this once, in this order:</p>
+              <div class="icon-steps">
+                <div class="icon-step">
+                  <div class="icon-step-num">01</div>
+                  <div class="icon-step-text">Open VelocityUI and let it fully load.</div>
+                </div>
+                <div class="icon-step">
+                  <div class="icon-step-num">02</div>
+                  <div class="icon-step-text">Launch Roblox and join a game on your first account.</div>
+                </div>
+                <div class="icon-step">
+                  <div class="icon-step-num">03</div>
+                  <div class="icon-step-text">Repeat for each additional account. Each one appears in the dropdown as it joins.</div>
+                </div>
+              </div>
+              <div class="tut-callout tut-callout--tip">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span><b>Used VelocityUI before?</b> The file is already in your executor folder. Your executor runs it automatically on every Roblox launch. Launch order no longer matters.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tut-step" id="step-3">
+            <span class="tut-step-num">03</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">Targeting instances</h2>
+              <p class="tut-step-desc">Click the monitor icon, then open the <b>Instances</b> dropdown. Each account is listed by username with its status dot. Click any account to toggle it as a target.</p>
+              <div class="stat-row">
+                <div class="stat-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                  Select one or many
+                </div>
+                <div class="stat-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Selection persists
+                </div>
+                <div class="stat-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  Accounts are independent
+                </div>
+              </div>
+              <div class="tut-callout tut-callout--note">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>Nothing selected means the script runs on the default active instance, same as normal execution without multi-instance.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tut-step" id="step-4">
+            <span class="tut-step-num">04</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">Running the script</h2>
+              <p class="tut-step-desc">Select your targets, then hit run or press <kbd>Cmd Return</kbd> as normal. VelocityUI sends to all selected instances at the same time, no delays.</p>
+              <div class="tut-callout tut-callout--tip">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>If one account fails (lost injection, still loading), the rest are unaffected. Each instance is handled separately.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tut-step" id="step-5">
+            <span class="tut-step-num">05</span>
+            <div class="tut-step-body">
+              <h2 class="tut-step-title">Edge cases</h2>
+              <p class="tut-step-desc">Something not working? Find it below.</p>
+              <div class="edge-cards">
+
+                <div class="edge-card">
+                  <div class="edge-card-head">
+                    <div class="edge-card-icon edge-card-icon--warn">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <div class="edge-card-title">Account not showing up at all</div>
+                    <svg class="edge-card-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </div>
+                  <div class="edge-card-body">Almost always means Roblox launched before VelocityUI on the first ever use, so the autoexecute file was not there yet. Close Roblox, open VelocityUI first, then relaunch.</div>
+                </div>
+
+                <div class="edge-card">
+                  <div class="edge-card-head">
+                    <div class="edge-card-icon edge-card-icon--warn">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div class="edge-card-title">Account went yellow mid-session</div>
+                    <svg class="edge-card-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </div>
+                  <div class="edge-card-body">The Roblox process closed or crashed. Re-join on that account and the executor's autoexecute script re-registers it once the game loads. The dot goes green again on its own.</div>
+                </div>
+
+                <div class="edge-card">
+                  <div class="edge-card-head">
+                    <div class="edge-card-icon edge-card-icon--err">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    </div>
+                    <div class="edge-card-title">Script ran on the wrong account</div>
+                    <svg class="edge-card-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </div>
+                  <div class="edge-card-body">A previous selection was still active. Open the dropdown and check which accounts are highlighted. Deselect anything you do not want before running. Selection persists between executions.</div>
+                </div>
+
+                <div class="edge-card">
+                  <div class="edge-card-head">
+                    <div class="edge-card-icon edge-card-icon--info">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.35"/></svg>
+                    </div>
+                    <div class="edge-card-title">Updated VelocityUI, now no instances show</div>
+                    <svg class="edge-card-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </div>
+                  <div class="edge-card-body">Every boot, VelocityUI checks the autoexecute file and reads the version number at the top. Any mismatch and it replaces the file. If Roblox launched before VelocityUI ran that check, the executor ran the old file first. <b>Fix:</b> close Roblox, open VelocityUI so it rewrites the file, then relaunch Roblox. Sorted until the next update.</div>
+                </div>
+
+              </div>
+              <div class="tut-callout tut-callout--warn" style="margin-top: 1rem;">
+                <svg class="tut-callout-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span>Accounts must be fully loaded into a game. Accounts on the loading screen or mid-teleport will not receive scripts reliably.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <a class="footer-logo" href="../../"><span class="footer-logo-v"></span>VelocityUI</a>
+      <p class="footer-tagline">Monaco-powered UI for Roblox script executors on macOS.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <span class="footer-col-head">Product</span>
+        <a class="footer-link" href="../install.html">Install</a>
+        <a class="footer-link" href="../tutorials.html">Tutorials</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-head">Links</span>
+        <a class="footer-link" href="https://github.com/dawnpetal/VelocityUI" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="footer-link" href="https://github.com/dawnpetal/VelocityUI/releases" target="_blank" rel="noopener noreferrer">Releases</a>
+        <a class="footer-link" href="https://github.com/dawnpetal/VelocityUI/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-legal">Not affiliated with Roblox Corporation. For educational purposes only.</div>
+</footer>
+
+<script type="module" src="../../js/main.js?v=landing-clean-21"></script>
+<script>
+  document.querySelectorAll('.edge-card-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.closest('.edge-card').classList.toggle('open');
+    });
+  });
+  const items = document.querySelectorAll('.tut-nav-item');
+  const steps = document.querySelectorAll('.tut-step');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        items.forEach(a => a.classList.remove('active'));
+        document.querySelector(`.tut-nav-item[href="#${e.target.id}"]`)?.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  steps.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
