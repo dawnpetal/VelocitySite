@@ -1,3 +1,5 @@
+import { blockMobile } from './mobile-block.js';
+blockMobile();
 import './nav.js?v=landing-clean-21';
 import './footer.js?v=landing-clean-21';
 
